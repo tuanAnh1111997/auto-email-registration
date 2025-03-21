@@ -1,0 +1,13 @@
+function onFormSubmit(e) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var lastRow = sheet.getLastRow(); // Lấy dòng mới nhất (vừa được thêm sau khi form submit)
+  var phoneNumber = sheet.getRange(lastRow, 4).getValue(); // Cột 4 = cột D (tùy vị trí số điện thoại trong sheet)
+
+  Logger.log("Số điện thoại mới: " + phoneNumber);
+
+  MailApp.sendEmail({
+    to: "tuancopywriter@gmail.com",
+    subject: "Có người vừa nhập số điện thoại",
+    body: "Số điện thoại vừa nhận: " + phoneNumber
+  });
+}
